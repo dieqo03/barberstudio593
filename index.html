@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Barber Studio 593 · Barbero profesional en La Florida, Santiago</title>
+  <meta name="description" content="Barber Studio 593: estudio privado de barbería en La Florida, Santiago. Atención personalizada 1 a 1, cortes degradados, clásicos y urbanos. Coordina tu hora por WhatsApp." />
+  <meta name="theme-color" content="#09090B" />
+
+  <!-- Vista previa al compartir por WhatsApp / Instagram -->
+  <meta property="og:title" content="Barber Studio 593 · Tu estilo, nuestra pasión" />
+  <meta property="og:description" content="Estudio privado de barbería en La Florida, Santiago. Atención 1 a 1, sin filas eternas." />
+  <meta property="og:type" content="website" />
+  <!-- ✏️ AL PUBLICAR LA WEB: cambia "logo.jpg" por la dirección completa, por ejemplo
+       https://tudominio.cl/logo.jpg  (WhatsApp e Instagram solo leen direcciones absolutas) -->
+  <meta property="og:image" content="logo.jpg" />
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="1024" />
+  <meta property="og:image:alt" content="Logo Barber Studio 593" />
+
+  <!-- Favicon: círculo minimalista con "593" -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='%2309090B' stroke='%230099FF' stroke-width='4'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='26' text-anchor='middle' fill='%230099FF'%3E593%3C/text%3E%3C/svg%3E" />
+
+  <!-- Tipografías: Oswald (títulos urbanos) + Plus Jakarta Sans (textos) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <!-- Tailwind CSS vía CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#09090B',      /* fondo principal */
+            carbon: '#121216',   /* tarjetas */
+            line: '#27272A',     /* bordes sutiles */
+            neon: '#0099FF',     /* azul eléctrico protagonista */
+            neonalt: '#0EA5E9'
+          },
+          fontFamily: {
+            display: ['Oswald', 'Impact', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+          },
+          boxShadow: {
+            glow: '0 0 32px -8px rgba(0,153,255,.6)',
+            glowsm: '0 0 18px -4px rgba(0,153,255,.7)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    html { scroll-padding-top: 76px; -webkit-text-size-adjust: 100%; }
+    body { background: #09090B; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+
+    /* Franja de poste de barbería (rojo / blanco / azul) */
+    .pole-bar {
+      height: 4px;
+      background: repeating-linear-gradient(-45deg, #E11D2E 0 10px, #FFFFFF 10px 20px, #0099FF 20px 30px);
+    }
+
+    /* Resplandores */
+    .glow-btn { box-shadow: 0 0 0 1px rgba(0,153,255,.65), 0 10px 30px -8px rgba(0,153,255,.7); transition: box-shadow .2s, transform .2s, background-color .2s; }
+    .glow-btn:hover { box-shadow: 0 0 0 1px rgba(56,189,248,.9), 0 12px 38px -6px rgba(0,153,255,.9); }
+    .glow-btn:active { transform: scale(.985); }
+    .neon-text { text-shadow: 0 0 26px rgba(0,153,255,.55); }
+    .hero-glow { background: radial-gradient(60% 55% at 50% 12%, rgba(0,153,255,.18), transparent 72%); }
+
+    /* Halo azul sutil alrededor del logo (queda justo por fuera del aro del logo) */
+    .logo-halo { background: radial-gradient(closest-side, transparent 56%, rgba(0,153,255,.20) 74%, transparent 100%); }
+
+    /* Campos del formulario */
+    .field {
+      width: 100%; background: #09090B; border: 1px solid #27272A; border-radius: .75rem;
+      padding: .85rem 1rem; font-size: 16px; color: #fff;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .field::placeholder { color: #71717A; }
+    .field:focus { outline: none; border-color: #0099FF; box-shadow: 0 0 0 3px rgba(0,153,255,.25); }
+    .field.is-invalid { border-color: #F43F5E; }
+    select.field {
+      -webkit-appearance: none; appearance: none; padding-right: 2.5rem;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2371717A'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.1rem;
+    }
+    select.field.is-empty { color: #71717A; }
+    select.field option { color: #fff; background: #121216; }
+    .chips.is-invalid .chip { border-color: #F43F5E; }
+
+    /* Botones "Copiar" */
+    .copy-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .4rem; flex-shrink: 0;
+      min-height: 40px; padding: 0 .85rem; border-radius: .6rem; border: 1px solid #27272A;
+      background: #09090B; color: #E4E4E7; font-size: 12.5px; font-weight: 700;
+      transition: border-color .15s, background-color .15s, color .15s;
+    }
+    .copy-btn:hover { border-color: #0099FF; color: #fff; }
+    .copy-btn:focus-visible { outline: 2px solid #0099FF; outline-offset: 2px; }
+    .copy-btn .i-check { display: none; }
+    .copy-btn.is-copied { background: #0099FF; border-color: #0099FF; color: #fff; }
+    .copy-btn.is-copied .i-check { display: inline; }
+    .copy-btn.is-copied .i-copy { display: none; }
+
+    /* Mapa estilizado: pulso del pin */
+    @keyframes pin-pulse { 0% { transform: scale(1); opacity: .85; } 100% { transform: scale(3.2); opacity: 0; } }
+    .pin-pulse { transform-box: fill-box; transform-origin: center; animation: pin-pulse 2.2s ease-out infinite; }
+
+    /* Aparición suave al hacer scroll (solo si hay JS) */
+    .js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+    .js .reveal.is-visible { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto !important; }
+      .pin-pulse { animation: none; opacity: 0; }
+      .js .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BarberShop",
+    "name": "Barber Studio 593",
+    "description": "Estudio privado de barbería con atención personalizada 1 a 1.",
+    "telephone": "+56932141976",
+    "image": "logo.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Américo Vespucio 7983",
+      "addressLocality": "La Florida",
+      "addressRegion": "Región Metropolitana",
+      "addressCountry": "CL"
+    },
+    "sameAs": ["https://instagram.com/pv.gaelito"]
+  }
+  </script>
+</head>
+
+<body class="bg-ink font-sans text-white antialiased">
+
+  <!-- Ícono de WhatsApp reutilizable -->
+  <svg width="0" height="0" class="absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></symbol>
+  </svg>
+
+  <!-- =====================================================================
+       A) AVISO FIJO DE RESERVAS (permanente: no hay que editarlo cada día)
+       ✏️ Si algún día cambia la política, edita las dos frases de abajo.
+       Al tocarlo, lleva a la sección con los datos de transferencia.
+       ===================================================================== -->
+  <a href="#abono" class="sticky top-0 z-50 block border-b border-line bg-carbon/95 backdrop-blur">
+    <div class="mx-auto flex max-w-5xl items-center justify-center gap-3 px-4 py-2.5 text-center">
+      <svg class="h-4 w-4 shrink-0 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5" /><path d="M3.5 10h17M8 3v4M16 3v4M9.5 15l2 2 3.5-4" /></svg>
+      <p class="text-[11.5px] leading-snug sm:text-sm">
+        <span class="block font-extrabold tracking-wide text-white sm:inline">RESERVAS CON ABONO PREVIO DEL 50%</span>
+        <span class="hidden px-1.5 text-neon sm:inline" aria-hidden="true">•</span>
+        <span class="block text-zinc-300 sm:inline">Coordina tu hora por WhatsApp</span>
+      </p>
+    </div>
+  </a>
+
+  <!-- =====================================================================
+       B) PORTADA (HERO)
+       ===================================================================== -->
+  <header class="relative overflow-hidden">
+    <div class="hero-glow pointer-events-none absolute inset-0" aria-hidden="true"></div>
+
+    <div class="relative mx-auto max-w-3xl px-5 pb-14 pt-10 text-center sm:pt-14">
+
+      <!-- LOGO REAL: la clase mix-blend-lighten funde el fondo negro de la imagen con el fondo #09090B.
+           (No envolver esta imagen en elementos con opacity/transform: rompen la mezcla.) -->
+      <div class="relative mx-auto h-72 w-72 sm:h-80 sm:w-80">
+        <div class="logo-halo pointer-events-none absolute -inset-12" aria-hidden="true"></div>
+        <img src="logo.jpg" alt="Logo Barber Studio 593" width="1024" height="1024" fetchpriority="high" decoding="async" class="relative h-full w-full object-contain mix-blend-lighten" />
+      </div>
+
+      <p class="mt-7 inline-flex items-center gap-2 rounded-full border border-line bg-carbon px-4 py-1.5 text-[11px] font-bold tracking-[0.18em] text-neon">
+        BARBERO PROFESIONAL ECU593 🇪🇨
+      </p>
+
+      <h1 class="mt-5 font-display text-[44px] uppercase leading-[0.98] tracking-tight sm:text-7xl">
+        Tu estilo,<br /><span class="neon-text text-neon">nuestra pasión</span>
+      </h1>
+
+      <p class="mx-auto mt-5 max-w-md text-base leading-relaxed text-zinc-300 sm:text-lg">
+        Atención personalizada 1 a 1 en estudio privado. Sin filas eternas, dedicado 100% a tu corte.
+      </p>
+
+      <div class="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+        <a href="#reserva" class="glow-btn inline-flex items-center justify-center gap-2.5 rounded-xl bg-neon px-7 py-4 text-base font-extrabold text-white hover:bg-neonalt">
+          <svg class="h-5 w-5" fill="currentColor" aria-hidden="true"><use href="#i-wa" /></svg>
+          Agendar por WhatsApp
+        </a>
+        <a href="#servicios" class="inline-flex items-center justify-center rounded-xl border border-zinc-600 px-7 py-4 text-base font-bold text-zinc-100 transition hover:border-neon hover:text-white">
+          Ver precios y promos
+        </a>
+      </div>
+    </div>
+    <div class="pole-bar" aria-hidden="true"></div>
+  </header>
+
+  <main>
+
+    <!-- =================================================================
+         C) SERVICIOS Y PROMOCIONES  (✏️ precios en CLP: edítalos aquí)
+         ================================================================= -->
+    <section id="servicios" class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+      <div class="reveal mb-9 text-center">
+        <p class="text-[11px] font-bold tracking-[0.25em] text-neon">PRECIOS CLAROS</p>
+        <h2 class="mt-2 font-display text-4xl uppercase sm:text-5xl">Servicios &amp; Promos</h2>
+        <p class="mt-2 text-sm text-zinc-400">Valores en pesos chilenos (CLP).</p>
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-3">
+
+        <!-- Tarjeta destacada -->
+        <article class="reveal relative overflow-hidden rounded-2xl border border-neon/70 bg-carbon p-6 shadow-glow">
+          <div class="pole-bar absolute inset-x-0 top-0" aria-hidden="true"></div>
+          <span class="mt-1 inline-block rounded-full bg-neon px-3 py-1 text-[10.5px] font-extrabold tracking-wider text-ink">PROMO LUNES A JUEVES</span>
+          <h3 class="mt-4 font-display text-3xl uppercase">Combo Full</h3>
+          <p class="mt-0.5 text-sm font-semibold text-neon">Corte + Cejas + Mascarilla Negra</p>
+          <p class="mt-4 font-display text-5xl leading-none">$9.990</p>
+          <p class="mt-4 text-sm leading-relaxed text-zinc-400">El pack completo para salir renovado. Válido de lunes a jueves.</p>
+          <a href="#reserva" data-service="Combo Full Lunes a Jueves $9.990" class="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-neon transition hover:text-white">Consultar este servicio <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="reveal rounded-2xl border border-line bg-carbon p-6" style="transition-delay:80ms">
+          <span class="inline-block rounded-full border border-zinc-600 px-3 py-1 text-[10.5px] font-extrabold tracking-wider text-zinc-300">LUNES A JUEVES</span>
+          <h3 class="mt-4 font-display text-3xl uppercase">Corte de Cabello</h3>
+          <p class="mt-4 font-display text-5xl leading-none">$9.990</p>
+          <p class="mt-4 text-sm leading-relaxed text-zinc-400">Degradado (Fade), clásico o urbano con terminaciones a navaja.</p>
+          <a href="#reserva" data-service="Corte Lunes a Jueves $9.990" class="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-neon transition hover:text-white">Consultar este servicio <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="reveal rounded-2xl border border-line bg-carbon p-6" style="transition-delay:160ms">
+          <span class="inline-block rounded-full border border-zinc-600 px-3 py-1 text-[10.5px] font-extrabold tracking-wider text-zinc-300">VIERNES A DOMINGO</span>
+          <h3 class="mt-4 font-display text-3xl uppercase">Corte Valor Normal</h3>
+          <p class="mt-4 font-display text-5xl leading-none">$11.990</p>
+          <p class="mt-4 text-sm leading-relaxed text-zinc-400">Atención de fin de semana con toda la dedicación y detalle.</p>
+          <a href="#reserva" data-service="Corte Viernes a Domingo $11.990" class="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-neon transition hover:text-white">Consultar este servicio <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         D) EL ESTUDIO & COMODIDADES
+         ================================================================= -->
+    <section id="estudio" class="border-t border-line/60">
+      <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+        <div class="reveal mb-9 text-center">
+          <p class="text-[11px] font-bold tracking-[0.25em] text-neon">TU ESPACIO</p>
+          <h2 class="mt-2 font-display text-4xl uppercase sm:text-5xl">El Estudio &amp; Comodidades</h2>
+          <p class="mx-auto mt-2 max-w-sm text-sm text-zinc-400">Un lugar tranquilo y cercano, pensado para que te sientas en casa.</p>
+        </div>
+
+        <div class="grid gap-3 md:grid-cols-3">
+          <div class="reveal flex items-start gap-4 rounded-2xl border border-line bg-carbon p-5">
+            <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-neon/40 bg-neon/10 text-neon">
+              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
+            </span>
+            <div>
+              <h3 class="text-base font-extrabold">Atención 1 a 1</h3>
+              <p class="mt-1 text-sm leading-relaxed text-zinc-400">Un solo sillón, cero apuros y música a tu gusto.</p>
+            </div>
+          </div>
+
+          <div class="reveal flex items-start gap-4 rounded-2xl border border-line bg-carbon p-5" style="transition-delay:80ms">
+            <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-neon/40 bg-neon/10 text-neon">
+              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20.25h12m-7.5-3v3m3-3v3m-10.125-3h17.25c.621 0 1.125-.504 1.125-1.125V4.875c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125z" /></svg>
+            </span>
+            <div>
+              <h3 class="text-base font-extrabold">Zona de Espera Cómoda</h3>
+              <p class="mt-1 text-sm leading-relaxed text-zinc-400">Sillón y TV mientras esperas tu turno.</p>
+            </div>
+          </div>
+
+          <div class="reveal flex items-start gap-4 rounded-2xl border border-line bg-carbon p-5" style="transition-delay:160ms">
+            <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-neon/40 bg-neon/10 text-neon">
+              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2" /><path d="M6 10h12M9 5.5v2M9 13v3" /></svg>
+            </span>
+            <div>
+              <h3 class="text-base font-extrabold">Mini-Refri &amp; Snacks</h3>
+              <p class="mt-1 text-sm leading-relaxed text-zinc-400">Bebidas heladas y galletas disponibles en el local para acompañar tu visita.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         E) FORMULARIO "CONSULTA TU HORA POR WHATSAPP"
+         ✏️ El número de WhatsApp se cambia en el bloque de JavaScript del final (WA_NUMBER)
+         ================================================================= -->
+    <section id="reserva" class="border-t border-line/60">
+      <div class="mx-auto max-w-xl px-5 py-16 sm:py-20">
+        <div class="reveal mb-8 text-center">
+          <p class="text-[11px] font-bold tracking-[0.25em] text-neon">AGENDA FLEXIBLE</p>
+          <h2 class="mt-2 font-display text-4xl uppercase sm:text-5xl">Consulta tu hora por WhatsApp</h2>
+          <p class="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-zinc-400">Cuéntanos qué día y en qué bloque te acomoda. <strong class="font-semibold text-zinc-200">La hora exacta se confirma directamente por WhatsApp, según disponibilidad.</strong></p>
+        </div>
+
+        <form id="form-reserva" class="reveal space-y-6 rounded-2xl border border-line bg-carbon p-5 sm:p-8" novalidate>
+
+          <div>
+            <label for="nombre" class="mb-2 block text-sm font-bold">Tu nombre</label>
+            <input id="nombre" name="nombre" type="text" autocomplete="given-name" placeholder="Ej: Matías" class="field" />
+          </div>
+
+          <div>
+            <label for="servicio" class="mb-2 block text-sm font-bold">Servicio que buscas</label>
+            <select id="servicio" name="servicio" class="field is-empty">
+              <option value="" selected disabled>Elige un servicio</option>
+              <option value="Combo Full Lunes a Jueves $9.990">Combo Full Lunes a Jueves $9.990</option>
+              <option value="Corte Lunes a Jueves $9.990">Corte Lunes a Jueves $9.990</option>
+              <option value="Corte Viernes a Domingo $11.990">Corte Viernes a Domingo $11.990</option>
+              <option value="otro servicio">Otro servicio</option>
+            </select>
+          </div>
+
+          <fieldset>
+            <legend class="mb-2 block text-sm font-bold">¿Para cuándo?</legend>
+            <div id="grupo-dia" class="chips grid grid-cols-3 gap-2.5">
+              <label class="cursor-pointer">
+                <input type="radio" name="dia" value="hoy" class="peer sr-only" />
+                <span class="chip block rounded-xl border border-line bg-ink py-3.5 text-center text-sm font-bold text-zinc-300 transition peer-checked:border-neon peer-checked:bg-neon/15 peer-checked:text-white peer-checked:shadow-glowsm peer-focus-visible:ring-2 peer-focus-visible:ring-neon">Hoy</span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="dia" value="mañana" class="peer sr-only" />
+                <span class="chip block rounded-xl border border-line bg-ink py-3.5 text-center text-sm font-bold text-zinc-300 transition peer-checked:border-neon peer-checked:bg-neon/15 peer-checked:text-white peer-checked:shadow-glowsm peer-focus-visible:ring-2 peer-focus-visible:ring-neon">Mañana</span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="dia" value="otro día" class="peer sr-only" />
+                <span class="chip block rounded-xl border border-line bg-ink py-3.5 text-center text-sm font-bold text-zinc-300 transition peer-checked:border-neon peer-checked:bg-neon/15 peer-checked:text-white peer-checked:shadow-glowsm peer-focus-visible:ring-2 peer-focus-visible:ring-neon">Otro día</span>
+              </label>
+            </div>
+            <div id="dia-extra-wrap" class="mt-3 hidden">
+              <label for="dia-extra" class="mb-2 block text-xs font-semibold text-zinc-400">¿Qué día te acomoda? (opcional)</label>
+              <input id="dia-extra" type="text" placeholder="Ej: sábado 28" class="field" />
+            </div>
+          </fieldset>
+
+          <div>
+            <label for="horario" class="mb-2 block text-sm font-bold">Horario aproximado preferido</label>
+            <select id="horario" name="horario" class="field is-empty">
+              <option value="" selected disabled>Elige un horario</option>
+              <option value="la mañana, de 10:00 a 13:00">Mañana (10:00 - 13:00)</option>
+              <option value="la tarde, de 14:00 a 18:00">Tarde (14:00 - 18:00)</option>
+              <option value="la noche, de 18:00 a 21:00">Noche (18:00 - 21:00)</option>
+            </select>
+            <p class="mt-2 text-xs leading-relaxed text-zinc-500">Es solo una referencia: la hora exacta se confirma por WhatsApp según disponibilidad.</p>
+          </div>
+
+          <!-- Vista previa del mensaje -->
+          <div class="rounded-xl border border-dashed border-line bg-ink/60 p-4">
+            <p class="mb-1.5 text-[10.5px] font-bold tracking-[0.2em] text-zinc-500">ASÍ SE VERÁ TU MENSAJE</p>
+            <p id="preview" class="text-sm leading-relaxed text-zinc-300"></p>
+          </div>
+
+          <div>
+            <p id="form-error" role="alert" class="mb-3 hidden text-sm font-semibold text-rose-400"></p>
+            <button type="submit" class="glow-btn flex w-full items-center justify-center gap-3 rounded-xl bg-neon px-6 py-5 text-base font-extrabold text-white hover:bg-neonalt">
+              <svg class="h-6 w-6 shrink-0" fill="currentColor" aria-hidden="true"><use href="#i-wa" /></svg>
+              Consultar disponibilidad por WhatsApp
+            </button>
+            <p class="mt-3 text-center text-xs leading-relaxed text-zinc-500">Se abrirá WhatsApp con el mensaje ya escrito. Solo falta que lo envíes.<br />Para confirmar tu hora se requiere abono previo: <a href="#abono" class="font-semibold text-neon underline-offset-2 hover:underline">ver datos de transferencia</a>.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         POLÍTICA DE RESERVA (ABONO 50%) Y DATOS DE TRANSFERENCIA
+         ✏️ Los datos bancarios están en las filas con data-row: edita solo el texto de
+         cada valor (clase "val"); los botones "Copiar" leen lo que esté escrito ahí.
+         ================================================================= -->
+    <section id="abono" class="border-t border-line/60">
+      <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+        <div class="reveal mb-9 text-center">
+          <p class="text-[11px] font-bold tracking-[0.25em] text-neon">CÓMO CONFIRMAR TU HORA</p>
+          <h2 class="mt-2 font-display text-4xl uppercase sm:text-5xl">Política de reserva</h2>
+        </div>
+
+        <!-- Regla principal -->
+        <div class="reveal relative overflow-hidden rounded-2xl border border-neon/60 bg-carbon p-6 shadow-glow sm:p-8">
+          <div class="pole-bar absolute inset-x-0 top-0" aria-hidden="true"></div>
+          <div class="mt-1 flex flex-col items-center gap-4 text-center sm:flex-row sm:gap-8 sm:text-left">
+            <p class="neon-text font-display text-7xl leading-none text-neon sm:text-8xl">50%</p>
+            <div>
+              <h3 class="font-display text-2xl uppercase sm:text-3xl">Toda reserva requiere abono</h3>
+              <p class="mt-2 text-sm leading-relaxed text-zinc-300 sm:text-base">Para garantizar una mejor organización y evitar pérdidas de horas, toda reserva requiere un abono del <strong class="text-white">50% (o 100%)</strong> del valor del servicio.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 grid gap-4 md:grid-cols-2">
+
+          <!-- Datos de transferencia -->
+          <div class="reveal rounded-2xl border border-line bg-carbon p-5 sm:p-6">
+            <div class="flex items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-neon/40 bg-neon/10 text-neon">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5" /><path d="M2.5 10h19M6 15h4" /></svg>
+              </span>
+              <h3 class="font-display text-2xl uppercase">Datos de transferencia</h3>
+            </div>
+
+            <div class="mt-3">
+              <div data-row class="flex items-center justify-between gap-3 border-b border-line py-3.5">
+                <div class="min-w-0">
+                  <p class="lbl text-[10.5px] font-bold uppercase tracking-[0.18em] text-zinc-500">Titular</p>
+                  <p class="val mt-0.5 text-[15px] font-bold">Francheska Victoria Pilozo Vera</p>
+                </div>
+              </div>
+
+              <div data-row class="flex items-center justify-between gap-3 border-b border-line py-3.5">
+                <div class="min-w-0">
+                  <p class="lbl text-[10.5px] font-bold uppercase tracking-[0.18em] text-zinc-500">RUT</p>
+                  <p class="val mt-0.5 break-all text-[15px] font-bold">29.092.988-1</p>
+                </div>
+                <button type="button" class="copy-btn" data-copy-row aria-label="Copiar RUT">
+                  <svg class="i-copy h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2" /><path d="M5 15V6a2 2 0 012-2h9" /></svg>
+                  <svg class="i-check h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7" /></svg>
+                  <span data-label>Copiar</span>
+                </button>
+              </div>
+
+              <div data-row class="flex items-center justify-between gap-3 border-b border-line py-3.5">
+                <div class="min-w-0">
+                  <p class="lbl text-[10.5px] font-bold uppercase tracking-[0.18em] text-zinc-500">Banco</p>
+                  <p class="val mt-0.5 text-[15px] font-bold">Mercado Pago</p>
+                </div>
+              </div>
+
+              <div data-row class="flex items-center justify-between gap-3 border-b border-line py-3.5">
+                <div class="min-w-0">
+                  <p class="lbl text-[10.5px] font-bold uppercase tracking-[0.18em] text-zinc-500">Tipo de cuenta</p>
+                  <p class="val mt-0.5 text-[15px] font-bold">Cuenta Vista</p>
+                </div>
+              </div>
+
+              <div data-row class="flex items-center justify-between gap-3 border-b border-line py-3.5">
+                <div class="min-w-0">
+                  <p class="lbl text-[10.5px] font-bold uppercase tracking-[0.18em] text-zinc-500">N.º de cuenta</p>
+                  <p class="val mt-0.5 break-all text-[15px] font-bold tracking-wide">1086553824</p>
+                </div>
+                <button type="button" class="copy-btn" data-copy-row aria-label="Copiar número de cuenta">
+                  <svg class="i-copy h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2" /><path d="M5 15V6a2 2 0 012-2h9" /></svg>
+                  <svg class="i-check h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7" /></svg>
+                  <span data-label>Copiar</span>
+                </button>
+              </div>
+
+              <div data-row class="flex items-center justify-between gap-3 py-3.5">
+                <div class="min-w-0">
+                  <p class="lbl text-[10.5px] font-bold uppercase tracking-[0.18em] text-zinc-500">Correo</p>
+                  <p class="val mt-0.5 break-all text-[15px] font-bold">francheskapilozo26@gmail.com</p>
+                </div>
+                <button type="button" class="copy-btn" data-copy-row aria-label="Copiar correo">
+                  <svg class="i-copy h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2" /><path d="M5 15V6a2 2 0 012-2h9" /></svg>
+                  <svg class="i-check h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7" /></svg>
+                  <span data-label>Copiar</span>
+                </button>
+              </div>
+            </div>
+
+            <button type="button" class="copy-btn mt-2 w-full !border-neon/60 !text-white hover:!bg-neon/15" style="min-height:48px;font-size:14px" data-copy-all>
+              <svg class="i-copy h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2" /><path d="M5 15V6a2 2 0 012-2h9" /></svg>
+              <svg class="i-check h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7" /></svg>
+              <span data-label>Copiar todos los datos</span>
+            </button>
+            <p id="copy-status" class="sr-only" role="status" aria-live="polite"></p>
+          </div>
+
+          <!-- Condiciones importantes -->
+          <div class="reveal rounded-2xl border border-line bg-carbon p-5 sm:p-6" style="transition-delay:80ms">
+            <div class="flex items-center gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-neon/40 bg-neon/10 text-neon">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.3 3.9L2.4 17.6A2 2 0 004.1 20.6h15.8a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z" /></svg>
+              </span>
+              <h3 class="font-display text-2xl uppercase">Condiciones importantes</h3>
+            </div>
+
+            <ol class="mt-4 space-y-3">
+              <li class="flex items-start gap-3 rounded-xl border border-line bg-ink/60 p-4">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-neon/40 bg-neon/10 text-neon">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                </span>
+                <p class="pt-0.5 text-sm leading-relaxed text-zinc-300">La hora quedará confirmada <strong class="text-white">una vez realizado el abono</strong>.</p>
+              </li>
+
+              <li class="flex items-start gap-3 rounded-xl border border-line bg-ink/60 p-4">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-neon/40 bg-neon/10 text-neon">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                </span>
+                <p class="pt-0.5 text-sm leading-relaxed text-zinc-300">El <strong class="text-white">comprobante de transferencia</strong> deberá enviarse por WhatsApp para confirmar la reserva.</p>
+              </li>
+
+              <li class="flex items-start gap-3 rounded-xl border border-rose-500/25 bg-rose-500/5 p-4">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-rose-500/40 bg-rose-500/10 text-rose-400">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5" /><path d="M3.5 10h17M8 3v4M16 3v4M10 13.5l4 4m0-4l-4 4" /></svg>
+                </span>
+                <p class="pt-0.5 text-sm leading-relaxed text-zinc-300">Si el cliente no asiste a su cita, <strong class="text-white">pierde el abono realizado</strong>.</p>
+              </li>
+
+              <li class="flex items-start gap-3 rounded-xl border border-rose-500/25 bg-rose-500/5 p-4">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-rose-500/40 bg-rose-500/10 text-rose-400">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" /></svg>
+                </span>
+                <p class="pt-0.5 text-sm leading-relaxed text-zinc-300"><strong class="text-white">No se realizan devoluciones ni reembolsos</strong> del abono.</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="reveal mt-6 text-center">
+          <a href="https://wa.me/56932141976?text=%C2%A1Hola!%20Te%20env%C3%ADo%20el%20comprobante%20de%20mi%20abono%20para%20confirmar%20mi%20reserva%20en%20Barber%20Studio%20593." target="_blank" rel="noopener" class="glow-btn inline-flex w-full items-center justify-center gap-2.5 rounded-xl bg-neon px-7 py-4 text-base font-extrabold text-white hover:bg-neonalt sm:w-auto">
+            <svg class="h-5 w-5 shrink-0" fill="currentColor" aria-hidden="true"><use href="#i-wa" /></svg>
+            Enviar comprobante por WhatsApp
+          </a>
+          <p class="mt-3 text-xs text-zinc-500">Recuerda adjuntar la captura o el PDF de tu transferencia en el chat.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         F) UBICACIÓN Y CONTACTO
+         ================================================================= -->
+    <section id="ubicacion" class="border-t border-line/60">
+      <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+        <div class="reveal mb-9 text-center">
+          <p class="text-[11px] font-bold tracking-[0.25em] text-neon">VISÍTANOS</p>
+          <h2 class="mt-2 font-display text-4xl uppercase sm:text-5xl">Ubicación &amp; Contacto</h2>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          <div class="reveal flex flex-col rounded-2xl border border-line bg-carbon p-6">
+            <div class="flex items-start gap-3">
+              <span class="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-neon/40 bg-neon/10 text-neon">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0112 2.5a7 7 0 017 7C19 14.8 12 21 12 21z" /><circle cx="12" cy="9.5" r="2.5" /></svg>
+              </span>
+              <div>
+                <h3 class="font-display text-2xl uppercase leading-tight">Av. Américo Vespucio 7983</h3>
+                <p class="text-sm text-zinc-400">La Florida, Santiago</p>
+              </div>
+            </div>
+
+            <p class="mt-4 inline-flex w-fit items-center gap-2 rounded-full border border-neon/40 bg-neon/10 px-3.5 py-1.5 text-xs font-bold text-white">🚇 A pasos de Metro Santa Julia</p>
+
+            <div class="mt-6 space-y-3 border-t border-line pt-6">
+              <a href="https://instagram.com/pv.gaelito" target="_blank" rel="noopener" class="group flex items-center gap-3 rounded-xl border border-line bg-ink p-3.5 transition hover:border-neon">
+                <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-carbon text-neon">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" /></svg>
+                </span>
+                <span>
+                  <span class="block text-[11px] font-bold tracking-widest text-zinc-500">INSTAGRAM</span>
+                  <span class="block text-sm font-bold">@pv.gaelito</span>
+                </span>
+              </a>
+
+              <a href="https://wa.me/56932141976" target="_blank" rel="noopener" class="group flex items-center gap-3 rounded-xl border border-line bg-ink p-3.5 transition hover:border-neon">
+                <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-carbon text-neon">
+                  <svg class="h-5 w-5" fill="currentColor" aria-hidden="true"><use href="#i-wa" /></svg>
+                </span>
+                <span>
+                  <span class="block text-[11px] font-bold tracking-widest text-zinc-500">WHATSAPP</span>
+                  <span class="block text-sm font-bold">+56 9 3214 1976</span>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Tarjeta con interfaz estilo Google Maps (modo oscuro). Toda la tarjeta es un enlace. -->
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Av.+Am%C3%A9rico+Vespucio+7983%2C+La+Florida%2C+Santiago"
+             target="_blank" rel="noopener"
+             aria-label="Cómo llegar en Google Maps a Av. Américo Vespucio 7983, La Florida (se abre en una pestaña nueva)"
+             class="reveal group relative block min-h-[440px] overflow-hidden rounded-2xl border border-line bg-carbon focus:outline-none focus-visible:ring-2 focus-visible:ring-neon md:min-h-full"
+             style="transition-delay:80ms">
+
+            <!-- Mapa estilizado de la zona (ilustrativo) -->
+            <svg class="absolute inset-0 h-full w-full transition-transform duration-700 group-hover:scale-[1.03]" viewBox="0 0 600 440" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="mapBlocks" width="74" height="62" patternUnits="userSpaceOnUse" patternTransform="rotate(-14)">
+                  <rect width="74" height="62" fill="#111116" />
+                  <rect width="74" height="6" fill="#1C1C24" />
+                  <rect width="6" height="62" fill="#1C1C24" />
+                </pattern>
+                <radialGradient id="pinHalo" cx="50%" cy="50%" r="50%">
+                  <stop offset="0" stop-color="#0099FF" stop-opacity=".38" />
+                  <stop offset="1" stop-color="#0099FF" stop-opacity="0" />
+                </radialGradient>
+                <filter id="pinGlow" x="-60%" y="-60%" width="220%" height="220%">
+                  <feGaussianBlur stdDeviation="4" result="b" />
+                  <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+                </filter>
+              </defs>
+
+              <!-- Manzanas y calles -->
+              <rect width="600" height="440" fill="url(#mapBlocks)" />
+
+              <!-- Áreas verdes -->
+              <path d="M40 250 Q 90 205 165 235 Q 195 300 120 335 Q 45 330 40 250Z" fill="#0F1E18" />
+              <rect x="440" y="36" width="120" height="74" rx="20" fill="#0F1E18" />
+              <rect x="455" y="300" width="100" height="70" rx="18" fill="#0F1E18" />
+
+              <!-- Calles secundarias -->
+              <path d="M-20 118 C 140 130 330 96 620 122" fill="none" stroke="#17171D" stroke-width="18" stroke-linecap="round" />
+              <path d="M-20 118 C 140 130 330 96 620 122" fill="none" stroke="#2A2A33" stroke-width="13" stroke-linecap="round" />
+              <path d="M-20 335 C 180 318 420 362 620 332" fill="none" stroke="#17171D" stroke-width="14" stroke-linecap="round" />
+              <path d="M-20 335 C 180 318 420 362 620 332" fill="none" stroke="#26262E" stroke-width="9" stroke-linecap="round" />
+
+              <!-- Av. Américo Vespucio -->
+              <path d="M250 -20 C 275 150 330 300 360 460" fill="none" stroke="#17171D" stroke-width="32" stroke-linecap="round" />
+              <path id="vespucio" d="M250 -20 C 275 150 330 300 360 460" fill="none" stroke="#33333E" stroke-width="25" stroke-linecap="round" />
+              <path d="M250 -20 C 275 150 330 300 360 460" fill="none" stroke="#0099FF" stroke-opacity=".5" stroke-width="2" stroke-dasharray="12 10" />
+              <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" letter-spacing="3" fill="#A1A1AA"><textPath href="#vespucio" startOffset="56%" dy="4">AV. AMÉRICO VESPUCIO</textPath></text>
+
+              <!-- Nombre de la comuna -->
+              <text x="140" y="190" transform="rotate(-14 140 190)" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="700" letter-spacing="5" fill="#3F3F49">LA FLORIDA</text>
+
+              <!-- Ruta a pie desde el Metro hasta el local -->
+              <path d="M284 126 C 300 150 296 168 318 174" fill="none" stroke="#FFFFFF" stroke-opacity=".6" stroke-width="2.2" stroke-dasharray="2 6" stroke-linecap="round" />
+
+              <!-- Metro Santa Julia -->
+              <circle cx="276" cy="114" r="11" fill="#0B0B0F" stroke="#38BDF8" stroke-width="2.5" />
+              <text x="276" y="118.5" text-anchor="middle" font-family="Oswald, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">M</text>
+              <text x="294" y="94" font-family="Plus Jakarta Sans, sans-serif" font-size="11.5" font-weight="700" fill="#E4E4E7" stroke="#0C0C10" stroke-width="3" paint-order="stroke" stroke-linejoin="round">Metro Santa Julia</text>
+
+              <!-- Pin de ubicación -->
+              <circle cx="330" cy="140" r="95" fill="url(#pinHalo)" />
+              <g transform="translate(330 172)">
+                <ellipse cx="0" cy="2" rx="12" ry="4" fill="#000" opacity=".55" />
+                <circle class="pin-pulse" cx="0" cy="0" r="9" fill="none" stroke="#0099FF" stroke-width="2" />
+                <path d="M0 0 C -4 -10 -18 -18 -18 -34 A 18 18 0 1 1 18 -34 C 18 -18 4 -10 0 0 Z" fill="#0099FF" stroke="#FFFFFF" stroke-width="2.5" stroke-linejoin="round" filter="url(#pinGlow)" />
+                <circle cx="0" cy="-34" r="7" fill="#FFFFFF" />
+              </g>
+            </svg>
+
+            <!-- Controles decorativos -->
+            <span class="absolute left-3 top-3 rounded-full border border-line bg-carbon/95 px-3 py-1.5 text-[10.5px] font-bold tracking-widest text-zinc-400">MAPA ILUSTRATIVO</span>
+            <div class="absolute right-3 top-3 flex flex-col overflow-hidden rounded-lg border border-line bg-carbon/95 text-zinc-300" aria-hidden="true">
+              <span class="flex h-9 w-9 items-center justify-center border-b border-line text-lg leading-none">+</span>
+              <span class="flex h-9 w-9 items-center justify-center text-lg leading-none">−</span>
+            </div>
+
+            <!-- Tarjeta flotante con la dirección y el botón principal -->
+            <div class="absolute inset-x-3 bottom-3 rounded-xl border border-line bg-carbon/95 p-4 shadow-2xl shadow-black/60 backdrop-blur">
+              <div class="flex items-start gap-3">
+                <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-neon text-white">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0112 2.5a7 7 0 017 7C19 14.8 12 21 12 21z" /><circle cx="12" cy="9.5" r="2.5" /></svg>
+                </span>
+                <div class="min-w-0">
+                  <p class="text-[11px] font-bold tracking-widest text-neon">BARBER STUDIO 593</p>
+                  <p class="text-sm font-extrabold leading-snug">Av. Américo Vespucio 7983, La Florida</p>
+                  <p class="text-xs text-zinc-400">Santiago, Región Metropolitana</p>
+                </div>
+              </div>
+              <span class="glow-btn mt-3 flex w-full items-center justify-center gap-2.5 rounded-lg bg-neon px-4 py-3.5 text-center text-sm font-extrabold leading-tight text-white group-hover:bg-neonalt">
+                <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2z" /></svg>
+                Cómo llegar en Google Maps (Metro, micro o auto)
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-line">
+    <div class="pole-bar" aria-hidden="true"></div>
+    <div class="mx-auto max-w-5xl px-5 pb-24 pt-8 text-center text-xs text-zinc-500">
+      <p>Barber Studio 593 • Tu estilo, nuestra pasión • Ecu593 🇪🇨</p>
+    </div>
+  </footer>
+
+  <!-- Botón flotante de WhatsApp (discreto) -->
+  <a href="https://wa.me/56932141976?text=%C2%A1Hola!%20Vi%20la%20web%20de%20Barber%20Studio%20593%20y%20quiero%20consultar%20disponibilidad." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"
+     class="fixed bottom-4 right-4 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/50 ring-1 ring-white/10 transition hover:scale-105"
+     style="margin-bottom: env(safe-area-inset-bottom, 0px)">
+    <svg class="h-6 w-6" fill="currentColor" aria-hidden="true"><use href="#i-wa" /></svg>
+  </a>
+
+  <script>
+    (() => {
+      // ✏️ CONFIGURACIÓN RÁPIDA: número de WhatsApp (código de país + número, sin + ni espacios)
+      const WA_NUMBER = '56932141976';
+
+      const form = document.getElementById('form-reserva');
+      const nombre = document.getElementById('nombre');
+      const servicio = document.getElementById('servicio');
+      const horario = document.getElementById('horario');
+      const diaGroup = document.getElementById('grupo-dia');
+      const diaExtraWrap = document.getElementById('dia-extra-wrap');
+      const diaExtra = document.getElementById('dia-extra');
+      const preview = document.getElementById('preview');
+      const errorBox = document.getElementById('form-error');
+
+      const getDia = () => {
+        const checked = form.querySelector('input[name="dia"]:checked');
+        return checked ? checked.value : '';
+      };
+
+      const syncEmpty = (sel) => sel.classList.toggle('is-empty', !sel.value);
+
+      function buildMessage() {
+        const n = nombre.value.trim() || '[tu nombre]';
+        const s = servicio.value || '[servicio]';
+        let d = getDia();
+        if (!d) d = '[día]';
+        else if (d === 'otro día' && diaExtra.value.trim()) d = diaExtra.value.trim();
+        const h = horario.value || '[horario]';
+        return `¡Hola! Soy ${n}, vi la web de Barber Studio 593. Quiero consultar disponibilidad para ${s} (${d} en horario de ${h}). ¿Tienen cupo?`;
+      }
+
+      function update() {
+        diaExtraWrap.classList.toggle('hidden', getDia() !== 'otro día');
+        preview.textContent = buildMessage();
+      }
+
+      const checks = [
+        { key: 'nombre', el: nombre, ok: () => nombre.value.trim().length >= 2, label: 'tu nombre' },
+        { key: 'servicio', el: servicio, ok: () => !!servicio.value, label: 'el servicio' },
+        { key: 'dia', el: diaGroup, ok: () => !!getDia(), label: 'para cuándo' },
+        { key: 'horario', el: horario, ok: () => !!horario.value, label: 'el horario' }
+      ];
+
+      form.addEventListener('input', (e) => {
+        e.target.classList.remove('is-invalid');
+        if (e.target.name === 'dia') diaGroup.classList.remove('is-invalid');
+        errorBox.classList.add('hidden');
+        update();
+      });
+      form.addEventListener('change', () => { syncEmpty(servicio); syncEmpty(horario); update(); });
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const missing = checks.filter((c) => !c.ok());
+        checks.forEach((c) => c.el.classList.toggle('is-invalid', missing.includes(c)));
+
+        if (missing.length) {
+          errorBox.textContent = 'Te falta completar: ' + missing.map((m) => m.label).join(', ') + '.';
+          errorBox.classList.remove('hidden');
+          const first = missing[0];
+          const target = first.key === 'dia' ? form.querySelector('input[name="dia"]') : first.el;
+          if (target) target.focus({ preventScroll: false });
+          return;
+        }
+
+        const url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(buildMessage());
+        const a = document.createElement('a');
+        a.href = url; a.target = '_blank'; a.rel = 'noopener';
+        document.body.appendChild(a); a.click(); a.remove();
+      });
+
+      // Las tarjetas de servicio preseleccionan la opción en el formulario
+      document.querySelectorAll('[data-service]').forEach((link) => {
+        link.addEventListener('click', () => {
+          servicio.value = link.dataset.service;
+          syncEmpty(servicio);
+          servicio.classList.remove('is-invalid');
+          update();
+        });
+      });
+
+      // ---------- Botones "Copiar" de los datos de transferencia ----------
+      const copyStatus = document.getElementById('copy-status');
+
+      async function copyText(text) {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+            return true;
+          }
+        } catch (_) { /* se prueba el método alternativo */ }
+        try {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed'; ta.style.top = '0'; ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select(); ta.setSelectionRange(0, text.length);
+          const ok = document.execCommand('copy');
+          ta.remove();
+          return ok;
+        } catch (_) { return false; }
+      }
+
+      function flash(btn, ok) {
+        const label = btn.querySelector('[data-label]');
+        if (!btn.dataset.original) btn.dataset.original = label.textContent;
+        label.textContent = ok ? '¡Copiado!' : 'No se pudo copiar';
+        btn.classList.toggle('is-copied', ok);
+        clearTimeout(btn._t);
+        btn._t = setTimeout(() => { label.textContent = btn.dataset.original; btn.classList.remove('is-copied'); }, 1800);
+      }
+
+      const rowData = (row) => ({
+        label: row.querySelector('.lbl').textContent.trim(),
+        value: row.querySelector('.val').textContent.trim()
+      });
+
+      document.querySelectorAll('[data-copy-row]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const { label, value } = rowData(btn.closest('[data-row]'));
+          const ok = await copyText(value);
+          flash(btn, ok);
+          copyStatus.textContent = ok ? label + ' copiado' : 'No se pudo copiar ' + label;
+        });
+      });
+
+      const copyAll = document.querySelector('[data-copy-all]');
+      if (copyAll) {
+        copyAll.addEventListener('click', async () => {
+          const text = Array.from(document.querySelectorAll('[data-row]'))
+            .map((row) => { const d = rowData(row); return d.label + ': ' + d.value; })
+            .join('\n');
+          const ok = await copyText(text);
+          flash(copyAll, ok);
+          copyStatus.textContent = ok ? 'Todos los datos copiados' : 'No se pudieron copiar los datos';
+        });
+      }
+
+      // Aparición suave al hacer scroll
+      const revealEls = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); } });
+        }, { threshold: 0.12 });
+        revealEls.forEach((el) => io.observe(el));
+      } else {
+        revealEls.forEach((el) => el.classList.add('is-visible'));
+      }
+
+      update();
+    })();
+  </script>
+</body>
+</html>
